@@ -1,0 +1,35 @@
+from faster_whisper import WhisperModel
+
+# load the whisper model
+model = WhisperModel(
+    "base",
+    device="cpu",
+    compute_type="int8"
+)
+
+def speech_to_text(audio_file):
+    try:
+        segments, info = model.transcribe(
+            audio_file,
+            beam_size=5
+        )
+        text=""
+
+        for segment in segments:
+            text+=segment.text
+
+        return text.strip()
+    
+    except Exception as e:
+        print(f"Speech-to-text error: {e}")
+
+        return None
+
+
+if __name__ == "__main__":
+    audio_file = "audio.wav"
+
+    text = speech_to_text(audio_file)
+
+    print("Transcription:")
+    print(text)
