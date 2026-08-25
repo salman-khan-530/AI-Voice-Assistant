@@ -3,5 +3,3 @@ streamlit-mic-recorder
 faster-whisper
 python-dotenv
 groq
-pyttsx3
-sounddevice
